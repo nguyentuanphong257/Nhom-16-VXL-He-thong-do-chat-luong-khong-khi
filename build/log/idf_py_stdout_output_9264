@@ -1,0 +1,538 @@
+Command: D:\ESP-IDF\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe D:\ESP-IDF\Espressif\frameworks\esp-idf-v5.5.4\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\TUAN PHONG\Documents\VXL\air_quality_monitor\build\air_quality_monitor.elf C:\Users\TUAN PHONG\Documents\VXL\air_quality_monitor\build\bootloader\bootloader.elf --force-color -m 'D:\ESP-IDF\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'D:\ESP-IDF\Espressif\frameworks\esp-idf-v5.5.4\tools\idf.py' '-p' 'COM4'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15864
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Jul  6 2026 22:37:10[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=26fech (159724) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00037014 vaddr=3ffb0000 size=047b4h ( 18356) load[0m
+[0;32mI (148) esp_image: segment 2: paddr=0003b7d0 vaddr=40080000 size=04848h ( 18504) load[0m
+[0;32mI (155) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=b5fach (745388) map[0m
+[0;32mI (410) esp_image: segment 4: paddr=000f5fd4 vaddr=40084848 size=17084h ( 94340) load[0m
+[0;32mI (447) esp_image: segment 5: paddr=0010d060 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (461) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (461) boot: Disabling RNG early entropy source...[0m
+[0;32mI (471) cpu_start: Multicore app[0m
+[0;32mI (480) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (480) cpu_start: Pro cpu start user code[0m
+[0;32mI (480) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (482) app_init: Application information:[0m
+[0;32mI (486) app_init: Project name:     air_quality_monitor[0m
+[0;32mI (490) app_init: App version:      1[0m
+[0;32mI (494) app_init: Compile time:     Jul  6 2026 22:36:51[0m
+[0;32mI (499) app_init: ELF file SHA256:  f283b7292...[0m
+[0;32mI (503) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (507) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (511) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (515) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (519) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (525) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (530) heap_init: At 3FFB98B0 len 00026750 (153 KiB): DRAM[0m
+[0;32mI (535) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (541) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (546) heap_init: At 4009B8CC len 00004734 (17 KiB): IRAM[0m
+[0;32mI (553) spi_flash: detected chip: generic[0m
+[0;32mI (555) spi_flash: flash io: dio[0m
+[0;32mI (559) main_task: Started on CPU0[0m
+[0;32mI (569) main_task: Calling app_main()[0m
+[0;32mI (569) APP_MAIN: --- Bắt đầu khởi động Trạm Quan Trắc Không Khí ---[0m
+[0;32mI (589) i2cdev: [Port 0] First initialization. Configuring bus with SDA=21, SCL=22 (Pullups SCL:0 SDA:0)[0m
+[0;33mW (589) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (609) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3ffbd7e4).[0m
+[0;32mI (609) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3ffbdd40, Speed: 1000000 Hz).[0m
+[0;32mI (629) BME680_DRIVER: BME680 đã khởi tạo thành công.[0m
+[0;32mI (629) PMS5003: Khoi tao UART cho PMS5003 hoan tat.[0m
+[0;32mI (629) SD_CARD_APP: Mount SD @ 10000kHz (MISO=19 MOSI=23 SCK=18 CS=5)...[0m
+[0;32mI (679) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+Name: SL32G
+Type: SDHC
+Speed: 10.00 MHz (limit: 10.00 MHz)
+Size: 30436MB
+CSD: ver=2, sector_size=512, capacity=62333952 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (869) SD_CARD_APP: Thẻ SD sẵn sàng![0m
+[0;32mI (879) wifi:wifi driver task: 3ffcdd84, prio:23, stack:6656, core=0[0m
+[0;32mI (889) wifi:wifi firmware version: 0947e8b[0m
+[0;32mI (889) wifi:wifi certification version: v7.0[0m
+[0;32mI (889) wifi:config NVS flash: enabled[0m
+[0;32mI (889) wifi:config nano formatting: disabled[0m
+[0;32mI (899) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (899) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (899) wifi:Init management short buffer num: 32[0m
+[0;32mI (909) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (909) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (919) wifi:Init static rx buffer num: 10[0m
+[0;32mI (919) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (929) wifi_init: rx ba win: 6[0m
+[0;32mI (929) wifi_init: accept mbox: 6[0m
+[0;32mI (929) wifi_init: tcpip mbox: 32[0m
+[0;32mI (929) wifi_init: udp mbox: 6[0m
+[0;32mI (939) wifi_init: tcp mbox: 6[0m
+[0;32mI (939) wifi_init: tcp tx win: 5760[0m
+[0;32mI (939) wifi_init: tcp rx win: 5760[0m
+[0;32mI (939) wifi_init: tcp mss: 1440[0m
+[0;32mI (949) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (949) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (959) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (1049) wifi:mode : sta (1c:c3:ab:c3:9f:d4)[0m
+[0;32mI (1049) wifi:enable tsf[0m
+[0;32mI (1049) WIFI_MGR: Khởi động Wi-Fi Station hoàn tất.[0m
+[1;31mE (1059) esp-tls: couldn't get hostname for :broker.hivemq.com: getaddrinfo() returns 202, addrinfo=0x0[0m
+[1;31mE (1059) transport_base: Failed to open a new connection: 32769[0m
+[1;31mE (1059) mqtt_client: Error transport connect[0m
+[0;32mI (1059) wifi:E (1069) MQTT_MGR: Gặp lỗi MQTT Event Error.[0m
+new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0W (1069) MQTT_MGR: Mất kết nối tới MQTT Broker.
+
+[0;32mI (1079) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1059) APP_MAIN: Đang cấp phát luồng cho 7 Task FreeRTOS...[0m
+[0;33mW (1859) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (1859) i2cdev: [0x68 at 0] Device added successfully (Device Handle: 0x3ffd4d90, Speed: 400000 Hz).[0m
+[0;32mI (1869) OLED_APP: Khởi tạo OLED qua i2cdev (Cổng I2C_NUM_0)...[0m
+[0;32mI (1869) T5_STORAGE: Khởi động: Đang tải tham số hiệu chuẩn từ Flash...[0m
+[0;32mI (1869) APP_MAIN: Khởi tạo thành công! Hệ thống đã đi vào hoạt động đo đạc.[0m
+[0;32mI (1889) main_task: Returned from app_main()[0m
+[0;33mW (1959) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2059) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2139) bme680: Heater is not stable[0m
+[0;33mW (2159) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (2169) i2cdev: [0x3c at 0] Device added successfully (Device Handle: 0x3ffdfd0c, Speed: 400000 Hz).[0m
+[0;32mI (2209) OLED_APP: OLED sẵn sàng.[0m
+[0;33mW (2259) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2359) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (2429) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (2439) wifi:Association refused temporarily time 196, comeback time 296 (TUs)[0m
+[0;33mW (2459) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2559) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2659) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (2739) wifi:state: assoc -> auth (0xb0)[0m
+[0;33mW (2759) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2859) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (2959) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3059) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3159) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3259) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3359) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3459) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3559) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3659) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3759) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3859) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (3959) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;33mW (4059) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (4069) wifi:state: auth -> assoc (0x0)[0m
+[1;31mE (4079) wifi:Association refused too many times, max allowed 1[0m
+[0;32mI (4079) wifi:state: assoc -> init (0xd010)[0m
+[0;32mI (4089) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (4089) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (1/5)...[0m
+[0;33mW (4159) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (4229) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (4239) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;33mW (4259) T1_ALERT: Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.[0m
+[0;32mI (4309) T5_STORAGE: Đã ghi nhật ký sự kiện vào thẻ SD[0m
+[0;33mW (6509) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (2/5)...[0m
+[0;32mI (6519) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6519) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (7379) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (7389) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (7859) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (7869) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (10539) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (10539) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[1;31mE (11079) esp-tls: couldn't get hostname for :broker.hivemq.com: getaddrinfo() returns 202, addrinfo=0x0[0m
+[1;31mE (11079) transport_base: Failed to open a new connection: 32769[0m
+[1;31mE (11079) mqtt_client: Error transport connect[0m
+[1;31mE (11079) MQTT_MGR: Gặp lỗi MQTT Event Error.[0m
+[0;33mW (11089) MQTT_MGR: Mất kết nối tới MQTT Broker.[0m
+[0;32mI (11899) wifi:state: run -> init (0x2c0)[0m
+[0;32mI (11909) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (11909) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (3/5)...[0m
+[0;32mI (13689) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (13699) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;33mW (14329) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (4/5)...[0m
+[0;32mI (14339) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (14339) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (15679) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (15689) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (15719) wifi:connected with Son Hai, aid = 1, channel 6, BW20, bssid = fa:da:4b:84:be:0c[0m
+[0;32mI (15719) wifi:security: WPA3-SAE HUNT_AND_PECK, phy: bgn, rssi: -11, cipher(pairwise:0x3, group:0x3), pmf:1[0m
+[0;32mI (15729) wifi:pm start, type: 1[0m
+
+[0;32mI (15729) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (15799) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (16769) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (16769) WIFI_MGR: Đã kết nối thành công! Cấp IP: 172.20.10.8[0m
+[0;32mI (16849) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (16849) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (19999) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (20009) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (23149) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (23159) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (26099) wifi:<ba-add>idx:0 (ifx:0, fa:da:4b:84:be:0c), tid:0, ssn:55, winSize:64[0m
+[0;32mI (26309) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (26319) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (29459) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (29469) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (29849) MQTT_MGR: Đã kết nối tới HiveMQ Broker thành công.[0m
+[0;32mI (32619) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (32629) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (32629) wifi:starting SA query procedure with AP(fa:da:4b:84:be:0c)[0m
+[0;32mI (32639) wifi:Send SA Query req with transaction id 3d41[0m
+[0;32mI (32839) wifi:Send SA Query req with transaction id d1ba[0m
+[0;32mI (33039) wifi:Send SA Query req with transaction id 20cc[0m
+[0;32mI (33239) wifi:Send SA Query req with transaction id 4ed4[0m
+[0;32mI (33439) wifi:Send SA Query req with transaction id 668f[0m
+[0;32mI (33639) wifi:Send SA Query req with transaction id 2138[0m
+[0;32mI (33659) wifi:No response to 6 SA Queries, reset connection sending disassoc[0m
+[0;32mI (33659) wifi:state: run -> init (0xd100)[0m
+[0;32mI (33669) wifi:pm stop, total sleep time: 15774049 us / 17932580 us[0m
+
+[0;32mI (33669) wifi:<ba-del>idx:0, tid:0[0m
+[0;32mI (33669) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (33679) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (1/5)...[0m
+[1;31mE (33689) transport_base: tcp_read error, errno=Software caused connection abort[0m
+[1;31mE (33689) mqtt_client: esp_mqtt_handle_transport_read_error: transport_read() error: errno=113[0m
+[0;32mI (33699) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0E (33699) MQTT_MGR: Gặp lỗi MQTT Event Error.[0m
+
+[1;31mE (33709) mqtt_client: mqtt_process_receive: mqtt_message_receive() returned -2[0m
+[0;32mI (33709) wifi:state: init -> auth (0xb0)[0m
+[0;33mW (33719) MQTT_MGR: Mất kết nối tới MQTT Broker.[0m
+[0;32mI (33729) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (33739) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (33789) wifi:connected with Son Hai, aid = 1, channel 6, BW20, bssid = fa:da:4b:84:be:0c[0m
+[0;32mI (33789) wifi:security: WPA3-SAE HUNT_AND_PECK, phy: bgn, rssi: -8, cipher(pairwise:0x3, group:0x3), pmf:1[0m
+[0;32mI (33799) wifi:pm start, type: 1[0m
+
+[0;32mI (33819) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (34829) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (34829) WIFI_MGR: Đã kết nối thành công! Cấp IP: 172.20.10.8[0m
+[0;32mI (35769) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (35779) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (38929) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (38929) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (42079) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;33mW (42089) T6_COMMS: Mất kết nối mạng, dữ liệu sẽ được lưu bình thường.[0m
+[0;32mI (43739) wifi:<ba-add>idx:0 (ifx:0, fa:da:4b:84:be:0c), tid:0, ssn:2, winSize:64[0m
+[0;32mI (44379) MQTT_MGR: Đã kết nối tới HiveMQ Broker thành công.[0m
+[0;32mI (45229) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (45249) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (48389) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (48399) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (51539) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (51549) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (54699) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (54709) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (57849) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (57859) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (61009) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (61019) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (64159) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (64169) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (67309) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (67329) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (70469) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (70479) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (73619) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (73629) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (76779) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (76789) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (79929) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (79939) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (83089) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (83099) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (86239) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (86249) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (89399) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (89409) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (92549) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (92559) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (95699) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (95709) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (98859) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (98869) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (102009) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (102019) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (105159) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (105179) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (108319) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (108329) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (111469) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (111479) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (114629) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (114639) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (117779) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (117789) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (120939) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (120949) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (124089) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (124099) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (127239) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (127259) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (130399) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (130409) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (133549) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (133569) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (136709) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (136719) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (139859) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (139869) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (143019) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (143029) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (146169) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (146179) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (149319) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (149339) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (152479) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (152489) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (155629) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (155639) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (158789) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (158799) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (161939) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (161949) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (165099) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (165109) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (168249) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (168259) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (171399) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (171419) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (174559) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (174569) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (177709) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (177719) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (180859) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (180879) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (184019) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (184029) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (187169) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (187179) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (190329) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (190339) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (193479) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (193489) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (196629) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (196649) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (199789) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (199799) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (202939) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (202949) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (206099) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (206109) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (209249) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (209259) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (212409) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (212419) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (215559) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (215569) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (218709) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (218729) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (221869) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (221879) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (225019) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (225029) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (228179) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (228189) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (231329) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (231339) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (234479) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (234489) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (237639) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (237649) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (240789) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (240799) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (243949) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (243959) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (247099) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (247109) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (250249) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (250259) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (253409) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (253419) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (256559) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (256569) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (259709) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (259729) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (262869) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (262879) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (266019) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (266029) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (269179) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (269189) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (272329) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (272339) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (275489) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (275499) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (278639) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (278649) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (281789) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (281809) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (284949) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (284959) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (288099) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (288109) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (291259) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (291269) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (294409) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (294419) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (297559) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (297579) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (300719) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (300729) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (303869) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (303879) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (307029) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (307039) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (310179) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (310189) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (313329) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (313349) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (316489) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (316499) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (319639) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (319659) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (322799) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (322809) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (325949) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (325959) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (329109) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (329119) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (332259) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (332269) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (335409) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (335419) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (338569) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (338579) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (341719) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (341729) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (344879) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (344889) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (348029) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (348039) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (351189) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (351199) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (354339) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (354349) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (357489) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (357509) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (360649) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (360659) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (363799) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (363809) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (366959) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (366969) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (370109) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (370119) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (373269) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (373279) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (376419) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (376429) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (379569) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (379589) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (382729) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (382739) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (385879) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (385899) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (389039) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (389049) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (392189) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (392199) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (395349) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (395359) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (398499) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (398509) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (401649) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (401669) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (404809) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (404819) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (407959) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (407969) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (411119) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (411129) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (414269) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (414279) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (417429) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (417439) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (420579) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (420589) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (423729) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (423749) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (426889) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (426899) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (430039) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (430049) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (433199) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (433209) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (436349) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (436359) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (439509) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (439519) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (442659) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (442669) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (445819) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (445829) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (448969) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (448979) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (452119) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (452139) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (455279) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (455289) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (458429) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (458439) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (461589) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (461599) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (464739) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (464749) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (467899) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (467909) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (471049) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (471059) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (474209) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (474219) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (477359) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (477369) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (480509) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (480529) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (483669) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (483679) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (486819) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (486839) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (489979) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (489989) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (493129) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (493139) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (496289) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (496299) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (499439) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (499449) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (502589) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (502599) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (505749) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (505759) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (508899) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (508909) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (512049) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (512069) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (515209) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (515219) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (518359) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (518369) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (521519) MQ135_DRV: raw=0  V=0.100  Rs=320.0K  Rs/Ro=12.800  CO2=0.07 ppm[0m
+[0;32mI (521529) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "air_monitor_platform",
+			"path": "../../../air_monitor_platform"
+		}
+	],
+	"settings": {}
+}
