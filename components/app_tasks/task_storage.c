@@ -28,10 +28,10 @@ if (bits & BIT_SD_CARD_ERROR) {
     while (1) {
         if (xQueueReceive(Q_Storage, &data, portMAX_DELAY) == pdPASS) {
             snprintf(csv_buffer, sizeof(csv_buffer), 
-                     "%04d-%02d-%02d %02d:%02d:%02d,%.1f,%.1f,%.1f,%d,%d,%.0f,%d\n",
+                     "%04d-%02d-%02d %02d:%02d:%02d,%.1f,%.1f,%d,%d,%.0f,%d\n",
                      data.timestamp.year, data.timestamp.month, data.timestamp.day,
                      data.timestamp.hour, data.timestamp.minute, data.timestamp.second,
-                     data.temperature, data.humidity, data.pressure,
+                     data.temperature, data.humidity ,
                      data.pm2_5, data.pm10, data.co2_ppm, data.aqi_total);
             
             sd_card_write_line("/sdcard/data.csv", csv_buffer);
