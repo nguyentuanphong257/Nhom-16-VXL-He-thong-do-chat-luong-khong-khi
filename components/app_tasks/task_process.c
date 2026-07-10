@@ -3,7 +3,7 @@
 #include "data_processor.h"
 #include "esp_log.h"
 
-#define AQI_THRESHOLD_ALERT 30 // Ngưỡng bắt đầu mức Xấu
+#define AQI_THRESHOLD_ALERT 10 // Ngưỡng bắt đầu mức Xấu
 
 extern FilterState_t filter_pm25, filter_pm10, filter_temp, filter_hum;
 

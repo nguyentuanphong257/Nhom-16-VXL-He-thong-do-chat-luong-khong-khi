@@ -1,12 +1,15 @@
 #include "app_tasks.h"
 #include "global_types.h"
+#include "app_config.h"
 #include "esp_log.h"
 #include "sd_card_app.h"
 #include "driver/gpio.h"
 #include "comms.h"
+#include <stdio.h>
 
 #define BUZZER_PIN GPIO_NUM_4
 static const char *TAG = "T1_ALERT";
+static const char *MQTT_ALERT_OUTBOX = "/sdcard/mqalt.log";
 
 void task_alert_entry(void *pvParameters) {
     // Cấu hình chân D4 cho Buzzer
@@ -15,6 +18,8 @@ void task_alert_entry(void *pvParameters) {
 
     ProcessedData_t data;
     char event_buffer[128];
+    char mqtt_payload[128];
+    char timestamp[32];
 
     while (1) {
         // Chờ tín hiệu BIT_ALERT được set (blocking)
@@ -34,24 +39,54 @@ void task_alert_entry(void *pvParameters) {
             // vTaskDelay(pdMS_TO_TICKS(1000));
             // gpio_set_level(BUZZER_PIN, 0);
 
-            // Lấy dữ liệu kèm theo từ queue alert (gửi bởi task_process)
+            EventBits_t sd_bits = xEventGroupGetBits(SystemEventGroup);
             if (xQueueReceive(Q_Alert, &data, pdMS_TO_TICKS(1000)) == pdPASS) {
                 snprintf(event_buffer, sizeof(event_buffer),
                          "%04d-%02d-%02d %02d:%02d:%02d - CẢNH BÁO: Vượt ngưỡng AQI an toàn!",
                          data.timestamp.year, data.timestamp.month, data.timestamp.day,
                          data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
-                sd_card_write_line("/sdcard/event.log", event_buffer);
-                ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện vào thẻ SD");
+                if (sd_bits & BIT_SD_CARD_READY) {
+                    sd_card_write_line("/sdcard/event.log", event_buffer);
+                    ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện vào thẻ SD");
+                } else {
+                    ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua ghi nhật ký sự kiện");
+                }
             } else {
                 snprintf(event_buffer, sizeof(event_buffer),
                          "0000-00-00 00:00:00 - CẢNH BÁO: Vượt ngưỡng AQI (dữ liệu không có)");
-                sd_card_write_line("/sdcard/event.log", event_buffer);
-                ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện (không có dữ liệu kèm theo)");
+                if (sd_bits & BIT_SD_CARD_READY) {
+                    sd_card_write_line("/sdcard/event.log", event_buffer);
+                    ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện (không có dữ liệu kèm theo)");
+                } else {
+                    ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua ghi nhật ký sự kiện");
+                }
             }
 
-            // Đẩy MQTT sự kiện vượt ngưỡng lên Webserver
+            snprintf(timestamp, sizeof(timestamp),
+                     "%04d-%02d-%02d %02d:%02d:%02d",
+                     data.timestamp.year, data.timestamp.month, data.timestamp.day,
+                     data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
+
+            snprintf(mqtt_payload, sizeof(mqtt_payload),
+                     "{\"timestamp\": \"%s\", \"alert\": \"AQI Threshold Exceeded\"}",
+                     timestamp);
+
             if (mqtt_manager_is_connected()) {
-                mqtt_manager_publish(MQTT_TOPIC_ALERT, "{\"alert\": \"AQI Threshold Exceeded\"}", 1);
+                if (!mqtt_manager_publish(MQTT_TOPIC_ALERT, mqtt_payload, 1)) {
+                    ESP_LOGW(TAG, "Không gửi MQTT alert, lưu vào outbox.");
+                    if (sd_bits & BIT_SD_CARD_READY) {
+                        sd_card_write_line(MQTT_ALERT_OUTBOX, mqtt_payload);
+                    } else {
+                        ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua lưu alert outbox");
+                    }
+                }
+            } else {
+                ESP_LOGW(TAG, "MQTT offline, lưu alert vào outbox.");
+                if (sd_bits & BIT_SD_CARD_READY) {
+                    sd_card_write_line(MQTT_ALERT_OUTBOX, mqtt_payload);
+                } else {
+                    ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua lưu alert outbox");
+                }
             }
 
             // Xóa cờ alert sau khi xử lý

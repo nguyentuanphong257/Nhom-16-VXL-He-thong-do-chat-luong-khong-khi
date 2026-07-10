@@ -86,11 +86,14 @@ esp_err_t sd_card_init(void) {
 }
 
 esp_err_t sd_card_write_line(const char *filepath, const char *data) {
-    if (s_card == NULL) return ESP_ERR_INVALID_STATE;
+    if (s_card == NULL) {
+        ESP_LOGE(TAG, "SD chưa mount, không thể ghi: %s", filepath);
+        return ESP_ERR_INVALID_STATE;
+    }
 
     FILE *f = fopen(filepath, "a");
     if (f == NULL) {
-        ESP_LOGE(TAG, "Không mở được file: %s", filepath);
+        ESP_LOGE(TAG, "Không mở được file: %s, errno=%d (%s)", filepath, errno, strerror(errno));
         return ESP_FAIL;
     }
     fprintf(f, "%s\n", data);

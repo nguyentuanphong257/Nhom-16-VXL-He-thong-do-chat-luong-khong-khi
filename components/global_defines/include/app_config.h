@@ -18,8 +18,9 @@
 #define SPI_MOSI_PIN        23
 #define SPI_MISO_PIN        19
 
-#define BIT_SD_CARD_READY   (1 << 0)
-#define BIT_SD_CARD_ERROR   (1 << 1)
+// Event bits cho SD card phải khác biệt với các bit khác ở global_types.h
+#define BIT_SD_CARD_READY   (1 << 3)
+#define BIT_SD_CARD_ERROR   (1 << 4)
 
 // --- 3. Bus UART (Cảm biến bụi mịn PMS5003) ---
 #define UART_TX_PIN         17

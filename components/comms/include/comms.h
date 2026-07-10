@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /* --- WIFI CONFIG --- */
-#define WIFI_SSID       "Son Hai"
+#define WIFI_SSID       "Apple meow meow"
 #define WIFI_PASS       "13251971"
 #define WIFI_MAXIMUM_RETRY  5
 
