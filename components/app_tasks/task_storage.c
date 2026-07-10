@@ -21,7 +21,7 @@ if (bits & BIT_SD_CARD_ERROR) {
     
     ProcessedData_t data;
     char csv_buffer[128];
-    char event_buffer[128];
+    
     
     ESP_LOGI(TAG, "Khởi động: Đang tải tham số hiệu chuẩn từ Flash...");
 
@@ -40,15 +40,6 @@ if (bits & BIT_SD_CARD_ERROR) {
             // 2. Kiểm tra và ghi nhật ký sự kiện
             EventBits_t bits = xEventGroupGetBits(SystemEventGroup);
             
-            if (bits & BIT_ALERT) {
-                snprintf(event_buffer, sizeof(event_buffer),
-                         "%04d-%02d-%02d %02d:%02d:%02d - CẢNH BÁO: Vượt ngưỡng AQI an toàn!",
-                         data.timestamp.year, data.timestamp.month, data.timestamp.day,
-                         data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
-                sd_card_write_line("/sdcard/event.log", event_buffer);
-                ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện vào thẻ SD");
-                xEventGroupClearBits(SystemEventGroup, BIT_ALERT);
-            }
             
             if (bits & BIT_CALREG) {
                 // sd_card_write_log("/sdcard/event.log", "YÊU CẦU: Tái hiệu chuẩn do drift > 10% hoặc quá 30 ngày.");

@@ -26,6 +26,7 @@ static const char *TAG = "APP_MAIN";
 /* ========================================================================== */
 QueueHandle_t Q1_SensorQueue;
 QueueHandle_t Q_Display;
+QueueHandle_t Q_Alert;
 QueueHandle_t Q_Storage;
 QueueHandle_t Q_Comms;
 EventGroupHandle_t SystemEventGroup;
@@ -50,11 +51,12 @@ void app_main(void) {
     // 2. Khởi tạo các đối tượng IPC (Inter-Process Communication) cho FreeRTOS
     Q1_SensorQueue = xQueueCreate(QUEUE_LENGTH, sizeof(SensorData_t));
     Q_Display = xQueueCreate(5, sizeof(ProcessedData_t));
+    Q_Alert = xQueueCreate(5, sizeof(ProcessedData_t));
     Q_Storage = xQueueCreate(10, sizeof(ProcessedData_t));
     Q_Comms   = xQueueCreate(10, sizeof(ProcessedData_t));
     SystemEventGroup = xEventGroupCreate();
 
-    if (Q1_SensorQueue == NULL || Q_Display == NULL || Q_Storage == NULL || Q_Comms == NULL || SystemEventGroup == NULL) {
+    if (Q1_SensorQueue == NULL || Q_Display == NULL || Q_Alert == NULL || Q_Storage == NULL || Q_Comms == NULL || SystemEventGroup == NULL) {
         ESP_LOGE(TAG, "Không đủ bộ nhớ RAM để cấp phát Queue/EventGroup!");
         return; // Dừng hệ thống nếu không đủ RAM
     }

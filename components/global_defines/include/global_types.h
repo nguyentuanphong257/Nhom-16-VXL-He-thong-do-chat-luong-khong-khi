@@ -88,6 +88,7 @@ typedef struct {
 // Hàng đợi dữ liệu
 extern QueueHandle_t Q1_SensorQueue;
 extern QueueHandle_t Q_Display;
+extern QueueHandle_t Q_Alert;
 extern QueueHandle_t Q_Storage;
 extern QueueHandle_t Q_Comms;
 

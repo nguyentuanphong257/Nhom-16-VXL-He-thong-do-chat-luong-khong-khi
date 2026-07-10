@@ -3,7 +3,7 @@
 #include "data_processor.h"
 #include "esp_log.h"
 
-#define AQI_THRESHOLD_ALERT 50 // Ngưỡng bắt đầu mức Xấu
+#define AQI_THRESHOLD_ALERT 30 // Ngưỡng bắt đầu mức Xấu
 
 extern FilterState_t filter_pm25, filter_pm10, filter_temp, filter_hum;
 
@@ -12,8 +12,6 @@ static const CalibrationParams_t s_fixed_calib = {
     .temp_gain = 1.00f,
     .hum_offset = 1.5f,
     .hum_gain = 1.00f,
-    .pm25_offset = 0.0f,
-    .pm25_gain = 1.00f,
 };
 
 void task_process_entry(void *pvParameters) {
@@ -52,7 +50,9 @@ void task_process_entry(void *pvParameters) {
             
             // Kiểm tra vượt ngưỡng [cite: 41, 81]
             if (result.aqi_total >= AQI_THRESHOLD_ALERT) {
-                xEventGroupSetBits(SystemEventGroup, BIT_ALERT); // 
+                xEventGroupSetBits(SystemEventGroup, BIT_ALERT);
+                // Send a copy of the processed data to the alert task for logging/notification
+                xQueueSend(Q_Alert, &result, 0);
             }
 
             // Phân phối dữ liệu tới các Task tiêu thụ
