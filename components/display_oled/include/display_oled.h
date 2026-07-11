@@ -8,7 +8,7 @@
 void display_oled_init(void);
 
 /* Cập nhật các thông số AQI, T, RH, PM2.5, PM10, CO2 lên màn hình */
-void display_oled_update(const ProcessedData_t *data, bool has_alert);
+void display_oled_update(const ProcessedData_t *data, bool has_alert, bool is_idle);
 
 /* Xóa màn hình */
 void display_oled_clear(void);

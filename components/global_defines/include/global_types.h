@@ -14,6 +14,8 @@
 #define BIT_ALERT    (1 << 0)  // Set bởi T3: Kích hoạt khi có cảnh báo vượt ngưỡng
 #define BIT_IDLE     (1 << 1)  // Set bởi T7: Hệ thống nhàn rỗi (AQI <= 50 trong 10 phút)
 #define BIT_CALREG   (1 << 2)  // Set bởi T3: Cần tái hiệu chuẩn (drift > 10% hoặc > 30 ngày)
+#define BIT_WAKEUP_ISR (1 << 5) // Set bởi ISR: Ngắt phần cứng để thoát nhàn rỗi
+#define BIT_GAS_INTR_POWER (1 << 6) // Set bởi ISR: Báo cho task_power reset bộ đếm
 
 /* ========================================================================== */
 /* 2. CẤU TRÚC DỮ LIỆU THỜI GIAN THỰC (DS3231)                                */
@@ -91,6 +93,7 @@ extern QueueHandle_t Q_Display;
 extern QueueHandle_t Q_Alert;
 extern QueueHandle_t Q_Storage;
 extern QueueHandle_t Q_Comms;
+extern QueueHandle_t Q_Power;
 
 // Nhóm sự kiện
 extern EventGroupHandle_t SystemEventGroup;

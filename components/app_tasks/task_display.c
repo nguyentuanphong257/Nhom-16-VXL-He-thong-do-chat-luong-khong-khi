@@ -14,9 +14,10 @@ void task_display_entry(void *pvParameters) {
             // Kiểm tra xem hệ thống có đang ở trạng thái cảnh báo không
             EventBits_t bits = xEventGroupGetBits(SystemEventGroup);
             bool has_alert = (bits & BIT_ALERT) ? true : false;
+            bool is_idle = (bits & BIT_IDLE) ? true : false;
             
             // Cập nhật màn hình mỗi chu kỳ nhận kết quả 
-            display_oled_update(&data, has_alert);
+            display_oled_update(&data, has_alert, is_idle);
         }
     }
 }

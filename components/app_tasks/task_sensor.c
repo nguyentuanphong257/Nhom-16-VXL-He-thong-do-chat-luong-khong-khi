@@ -47,7 +47,8 @@ void task_sensor_entry(void *pvParameters) {
             xQueueSend(Q1_SensorQueue, &raw_data, 0);
         }
 
-        // vTaskDelay theo chu kỳ measure_interval_ms (được cập nhật bởi T7) 
-        vTaskDelay(pdMS_TO_TICKS(measure_interval_ms));
+        // Chờ BIT_WAKEUP_ISR hoặc timeout sau khoảng thời gian measure_interval_ms
+        // Điều này cho phép thoát khỏi idle lập tức khi có ngắt phần cứng thay vì bị kẹt trong vTaskDelay
+        xEventGroupWaitBits(SystemEventGroup, BIT_WAKEUP_ISR, pdTRUE, pdFALSE, pdMS_TO_TICKS(measure_interval_ms));
     }
 }

@@ -4,6 +4,7 @@
 #include "freertos/event_groups.h"
 #include "nvs_flash.h"
 #include "esp_log.h"
+#include "driver/gpio.h"
 
 // Gọi các Header nội bộ
 #include "app_config.h"
@@ -22,6 +23,26 @@
 static const char *TAG = "APP_MAIN";
 
 /* ========================================================================== */
+/* NGẮT PHẦN CỨNG MQ-135 (D0 -> D32)                                          */
+/* ========================================================================== */
+static void IRAM_ATTR mq135_isr_handler(void* arg) {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    
+    // Đặt lại thời gian về 1s để đo thường xuyên hơn
+    measure_interval_ms = 1000;
+    
+    // Xóa cờ nhàn rỗi (nếu đang bật)
+    xEventGroupClearBitsFromISR(SystemEventGroup, BIT_IDLE);
+    
+    // Đánh thức Task_Sensor ngay lập tức và báo cho Task_Power
+    xEventGroupSetBitsFromISR(SystemEventGroup, BIT_WAKEUP_ISR | BIT_GAS_INTR_POWER, &xHigherPriorityTaskWoken);
+    
+    if (xHigherPriorityTaskWoken == pdTRUE) {
+        portYIELD_FROM_ISR();
+    }
+}
+
+/* ========================================================================== */
 /* KHỞI TẠO VÙNG NHỚ CHO CÁC BIẾN EXTERN (Đã khai báo ở global_types.h)       */
 /* ========================================================================== */
 QueueHandle_t Q1_SensorQueue;
@@ -29,6 +50,7 @@ QueueHandle_t Q_Display;
 QueueHandle_t Q_Alert;
 QueueHandle_t Q_Storage;
 QueueHandle_t Q_Comms;
+QueueHandle_t Q_Power;
 EventGroupHandle_t SystemEventGroup;
 
 // Chu kỳ đo mặc định ban đầu là 1000ms (1s) [cite: 39]
@@ -54,9 +76,10 @@ void app_main(void) {
     Q_Alert = xQueueCreate(5, sizeof(ProcessedData_t));
     Q_Storage = xQueueCreate(10, sizeof(ProcessedData_t));
     Q_Comms   = xQueueCreate(10, sizeof(ProcessedData_t));
+    Q_Power   = xQueueCreate(2, sizeof(ProcessedData_t));
     SystemEventGroup = xEventGroupCreate();
 
-    if (Q1_SensorQueue == NULL || Q_Display == NULL || Q_Alert == NULL || Q_Storage == NULL || Q_Comms == NULL || SystemEventGroup == NULL) {
+    if (Q1_SensorQueue == NULL || Q_Display == NULL || Q_Alert == NULL || Q_Storage == NULL || Q_Comms == NULL || Q_Power == NULL || SystemEventGroup == NULL) {
         ESP_LOGE(TAG, "Không đủ bộ nhớ RAM để cấp phát Queue/EventGroup!");
         return; // Dừng hệ thống nếu không đủ RAM
     }
@@ -79,6 +102,17 @@ void app_main(void) {
     // 3. Khởi tạo kết nối mạng (Wi-Fi và MQTT) [cite: 54]
     wifi_manager_init();
     mqtt_manager_init();
+
+    // Cấu hình ngắt phần cứng cho MQ-135 (D32)
+    gpio_config_t io_conf = {};
+    io_conf.intr_type = GPIO_INTR_ANYEDGE; // Kích hoạt khi có thay đổi trạng thái
+    io_conf.pin_bit_mask = (1ULL << MQ135_INTR_PIN);
+    io_conf.mode = GPIO_MODE_INPUT;
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
+    gpio_config(&io_conf);
+    
+    gpio_install_isr_service(0);
+    gpio_isr_handler_add(MQ135_INTR_PIN, mq135_isr_handler, NULL);
 
     // I2C bus initialization is handled by i2cdev library when the first device (BME680) is created.
     // Explicit bsp_i2c_master_init() call is not needed here to avoid driver conflicts.

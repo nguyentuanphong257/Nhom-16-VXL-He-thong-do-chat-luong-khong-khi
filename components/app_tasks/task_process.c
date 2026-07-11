@@ -121,6 +121,7 @@ void task_process_entry(void *pvParameters) {
             xQueueSend(Q_Display, &result, 0);
             xQueueSend(Q_Storage, &result, 0);
             xQueueSend(Q_Comms,   &result, 0);
+            xQueueSend(Q_Power,   &result, 0);
         }
     }
 }

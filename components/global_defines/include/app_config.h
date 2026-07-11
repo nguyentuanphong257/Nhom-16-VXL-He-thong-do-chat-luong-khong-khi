@@ -28,6 +28,7 @@
 
 // --- 4. Chân Analog ADC (Cảm biến khí MQ-135) ---
 #define ADC_MQ135_PIN       33
+#define MQ135_INTR_PIN      32
 
 // --- 5. Chân Digital Output ---
 #define BUZZER_PIN          4

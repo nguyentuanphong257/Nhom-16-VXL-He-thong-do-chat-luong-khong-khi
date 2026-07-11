@@ -110,7 +110,7 @@ void display_oled_clear(void) {
     u8g2_ClearDisplay(&u8g2);
 }
 
-void display_oled_update(const ProcessedData_t *data, bool has_alert) {
+void display_oled_update(const ProcessedData_t *data, bool has_alert, bool is_idle) {
     u8g2_ClearBuffer(&u8g2);
 
     char buffer[32];
@@ -122,6 +122,8 @@ void display_oled_update(const ProcessedData_t *data, bool has_alert) {
 
     if (has_alert) {
         u8g2_DrawStr(&u8g2, 82, 14, "[ALERT]");
+    } else if (is_idle) {
+        u8g2_DrawStr(&u8g2, 82, 14, "[IDLE]");
     } else {
         u8g2_DrawStr(&u8g2, 90, 14, "[OK]");
     }
