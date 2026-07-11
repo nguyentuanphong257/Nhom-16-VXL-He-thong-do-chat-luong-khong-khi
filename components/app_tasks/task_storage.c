@@ -7,6 +7,7 @@
 #include <string.h>
 
 static const char *TAG = "T5_STORAGE";
+static bool calib_log_handled = false;
 
 void task_storage_entry(void *pvParameters) {
     
@@ -42,15 +43,18 @@ if (bits & BIT_SD_CARD_ERROR) {
             
             
             if (bits & BIT_CALREG) {
-                // sd_card_write_log("/sdcard/event.log", "YÊU CẦU: Tái hiệu chuẩn do drift > 10% hoặc quá 30 ngày.");
-                ESP_LOGI(TAG, "Ghi nhật ký: Yêu cầu tái hiệu chuẩn");
-                
-                // Lưu tham số mới khi có BIT_CAL_REG
-                // CalibrationParams_t new_calib = {...};
-                // flash_save_calib(&new_calib);
-                
-                // Xóa cờ sau khi xử lý xong
-                xEventGroupClearBits(SystemEventGroup, BIT_CALREG);
+                if (!calib_log_handled) {
+                    char log_buffer[128];
+                    snprintf(log_buffer, sizeof(log_buffer),
+                             "[%04d-%02d-%02d %02d:%02d:%02d] YEU CAU: Tai hieu chuan.\n",
+                             data.timestamp.year, data.timestamp.month, data.timestamp.day,
+                             data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
+                    sd_card_write_line("/sdcard/event.log", log_buffer);
+                    ESP_LOGI(TAG, "Ghi nhat ky: %s", log_buffer);
+                    calib_log_handled = true;
+                }
+            } else {
+                calib_log_handled = false;
             }
         }
     }

@@ -5,7 +5,7 @@
 #include "ds3231.h"
 #include "pms5003.h"
 
-// ❌ Đã loại bỏ hoàn toàn <time.h>
+
 
 void task_sensor_entry(void *pvParameters) {
     SensorData_t raw_data;
@@ -26,7 +26,14 @@ void task_sensor_entry(void *pvParameters) {
         
         // 4. Đọc MQ-135 (ADC) 
         float co2_value = 0.0f;
-        mq135_read_co2(&co2_value);
+        mq135_read_co2(&co2_value); // Vẫn giữ nguyên hàm đọc MQ-135
+
+        // Sử dụng gas_resistance từ BME680 để ước lượng eCO2 do MQ-135 bị lỗi (D33 = 0)
+        if (raw_data.gas_resistance > 0) {
+            // Công thức ước lượng eCO2 cơ bản: Baseline 400 ppm + nghịch đảo điện trở khí
+            co2_value = 400.0f + (500000.0f / raw_data.gas_resistance); 
+        }
+
         raw_data.mq135_adc_val = (uint16_t)co2_value;
         
         // 5. Validate dải giá trị đo

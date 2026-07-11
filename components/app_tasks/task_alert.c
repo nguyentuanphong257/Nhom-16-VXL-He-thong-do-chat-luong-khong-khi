@@ -51,15 +51,6 @@ void task_alert_entry(void *pvParameters) {
                 } else {
                     ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua ghi nhật ký sự kiện");
                 }
-            } else {
-                snprintf(event_buffer, sizeof(event_buffer),
-                         "0000-00-00 00:00:00 - CẢNH BÁO: Vượt ngưỡng AQI (dữ liệu không có)");
-                if (sd_bits & BIT_SD_CARD_READY) {
-                    sd_card_write_line("/sdcard/event.log", event_buffer);
-                    ESP_LOGI(TAG, "Đã ghi nhật ký sự kiện (không có dữ liệu kèm theo)");
-                } else {
-                    ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua ghi nhật ký sự kiện");
-                }
             }
 
             snprintf(timestamp, sizeof(timestamp),

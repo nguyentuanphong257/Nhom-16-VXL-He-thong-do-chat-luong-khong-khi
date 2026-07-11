@@ -83,6 +83,8 @@ static void try_flush_mqtt_outboxes(void)
     flush_mqtt_outbox(MQTT_ALERT_OUTBOX, MQTT_ALERT_TMP, true);
 }
 
+static bool calib_alert_handled = false;
+
 void task_comms_entry(void *pvParameters) {
     ProcessedData_t data;
     char payload_buffer[256];
@@ -104,6 +106,26 @@ void task_comms_entry(void *pvParameters) {
 
             EventBits_t bits = xEventGroupGetBits(SystemEventGroup);
             int qos = (bits & BIT_ALERT) ? 1 : 0;
+
+            if (bits & BIT_CALREG) {
+                if (!calib_alert_handled) {
+                    char alert_msg[192];
+                    snprintf(alert_msg, sizeof(alert_msg),
+                             "{\"timestamp\":\"%04d-%02d-%02d %02d:%02d:%02d\",\"alert\":\"CALIBRATION_REQUIRED\",\"reason\":\"Drift > 10%%\"}",
+                             data.timestamp.year, data.timestamp.month, data.timestamp.day,
+                             data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
+                    if (is_connected) {
+                        mqtt_manager_publish(MQTT_TOPIC_ALERT, alert_msg, 1);
+                    } else {
+                        if (xEventGroupGetBits(SystemEventGroup) & BIT_SD_CARD_READY) {
+                            sd_card_write_line(MQTT_ALERT_OUTBOX, alert_msg);
+                        }
+                    }
+                    calib_alert_handled = true;
+                }
+            } else {
+                calib_alert_handled = false;
+            }
 
             if (is_connected) {
                 if (mqtt_manager_publish(MQTT_TOPIC_DATA, payload_buffer, qos)) {
