@@ -4,6 +4,7 @@
 #include "esp_log.h"
 #include <time.h>
 #include <math.h>
+#include "esp_timer.h"
 
 #define AQI_THRESHOLD_ALERT 150 // Ngưỡng bắt đầu mức Xấu
 
@@ -90,6 +91,8 @@ void task_process_entry(void *pvParameters) {
         if (xQueueReceive(Q1_SensorQueue, &raw_data, portMAX_DELAY) == pdPASS) {
             
             result.timestamp = raw_data.timestamp;
+            result.start_time_us = raw_data.start_time_us;
+
             
             // Lọc nhiễu và áp dụng hệ số hiệu chuẩn cố định
             float filtered_t = filter_process_value(&filter_temp, raw_data.temperature);
@@ -123,5 +126,6 @@ void task_process_entry(void *pvParameters) {
             xQueueSend(Q_Comms,   &result, 0);
             xQueueSend(Q_Power,   &result, 0);
         }
+
     }
 }

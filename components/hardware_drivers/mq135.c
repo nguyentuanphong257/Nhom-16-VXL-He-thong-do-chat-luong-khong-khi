@@ -61,11 +61,7 @@ esp_err_t mq135_read_co2(float *co2_ppm) {
         // Thông số a, b lấy từ datasheet đường cong CO2: a = 110.47, b = -2.862
         *co2_ppm = 110.47f * powf(rs_ro_ratio, -2.862f);
 
-        // --- DEBUG: log toàn bộ chuỗi tính toán để xác định lỗi phần cứng hay công thức ---
-        // Nếu raw_val luôn ~0 hoặc ~4095 -> nghi ngờ phần cứng (dây AO, nguồn cấp, chân GPIO).
-        // Nếu raw_val hợp lý nhưng co2_ppm vẫn ra 0 -> nghi ngờ công thức/ép kiểu ở nơi gọi hàm.
-        ESP_LOGI(TAG, "raw=%d  V=%.3f  Rs=%.1fK  Rs/Ro=%.3f  CO2=%.2f ppm",
-                 raw_val, voltage, rs_gas, rs_ro_ratio, *co2_ppm);
+        
     } else {
         ESP_LOGE(TAG, "Doc ADC that bai: %s", esp_err_to_name(err));
     }

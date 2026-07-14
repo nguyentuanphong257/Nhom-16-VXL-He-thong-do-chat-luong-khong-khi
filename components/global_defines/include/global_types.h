@@ -34,6 +34,7 @@ typedef struct {
 /* ========================================================================== */
 typedef struct {
     Timestamp_t timestamp;
+    uint64_t start_time_us; // Ghi nhận thời điểm bắt đầu đọc cảm biến
     
     // Cảm biến BME680
     float    temperature;     // °C
@@ -57,6 +58,7 @@ typedef struct {
 /* ========================================================================== */
 typedef struct {
     Timestamp_t timestamp;
+    uint64_t start_time_us; // Ghi nhận thời điểm bắt đầu đọc cảm biến truyền từ T3
     
     // Dữ liệu đã qua lọc EMA/Nhiễu gai và áp dụng Gain/Offset
     float    temperature;

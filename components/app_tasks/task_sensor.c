@@ -4,6 +4,7 @@
 #include "mq135.h"
 #include "ds3231.h"
 #include "pms5003.h"
+#include "esp_timer.h"
 
 
 
@@ -11,6 +12,9 @@ void task_sensor_entry(void *pvParameters) {
     SensorData_t raw_data;
     
     while (1) {
+        // Lấy thời điểm bắt đầu chu kỳ đo
+        raw_data.start_time_us = esp_timer_get_time();
+
         // 1. Đọc DS3231 lấy timestamp TRỰC TIẾP vào biến của hệ thống
         if (ds3231_get_time(&raw_data.timestamp) != ESP_OK) {
             raw_data.timestamp.year = 0; // Đánh dấu lỗi nếu ngắt kết nối I2C
@@ -26,7 +30,7 @@ void task_sensor_entry(void *pvParameters) {
         
         // 4. Đọc MQ-135 (ADC) 
         float co2_value = 0.0f;
-        mq135_read_co2(&co2_value); // Vẫn giữ nguyên hàm đọc MQ-135
+        //mq135_read_co2(&co2_value); // Vẫn giữ nguyên hàm đọc MQ-135
 
         // Sử dụng gas_resistance từ BME680 để ước lượng eCO2 do MQ-135 bị lỗi (D33 = 0)
         if (raw_data.gas_resistance > 0) {

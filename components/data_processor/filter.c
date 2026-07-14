@@ -11,10 +11,10 @@ FilterState_t filter_hum;
 
 void filter_init_states(void) {
     // Thiết lập ngưỡng delta_max tùy theo đặc thù cảm biến
-    filter_pm25 = (FilterState_t){.delta_max = 20.0f, .spike_counter = 0, .is_initialized = false};
-    filter_pm10 = (FilterState_t){.delta_max = 30.0f, .spike_counter = 0, .is_initialized = false};
-    filter_temp = (FilterState_t){.delta_max = 2.0f, .spike_counter = 0, .is_initialized = false};
-    filter_hum  = (FilterState_t){.delta_max = 5.0f, .spike_counter = 0, .is_initialized = false};
+    filter_pm25 = (FilterState_t){.delta_max = 2.7f, .spike_counter = 0, .is_initialized = false};
+    filter_pm10 = (FilterState_t){.delta_max = 2.9f, .spike_counter = 0, .is_initialized = false};
+    filter_temp = (FilterState_t){.delta_max = 0.1f, .spike_counter = 0, .is_initialized = false};
+    filter_hum  = (FilterState_t){.delta_max = 0.2f, .spike_counter = 0, .is_initialized = false};
 }
 
 float filter_process_value(FilterState_t *state, float value) {

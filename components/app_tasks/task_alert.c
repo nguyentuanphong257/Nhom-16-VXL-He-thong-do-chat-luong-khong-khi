@@ -6,6 +6,8 @@
 #include "driver/gpio.h"
 #include "comms.h"
 #include <stdio.h>
+#include "esp_timer.h"
+
 
 #define BUZZER_PIN GPIO_NUM_4
 static const char *TAG = "T1_ALERT";
@@ -34,13 +36,16 @@ void task_alert_entry(void *pvParameters) {
         if (bits & BIT_ALERT) {
             ESP_LOGW(TAG, "Phát hiện vượt ngưỡng! Kích hoạt cảnh báo.");
 
-            // Bật còi cảnh báo (tùy muốn)
-            // gpio_set_level(BUZZER_PIN, 1);
-            // vTaskDelay(pdMS_TO_TICKS(1000));
-            // gpio_set_level(BUZZER_PIN, 0);
-
             EventBits_t sd_bits = xEventGroupGetBits(SystemEventGroup);
             if (xQueueReceive(Q_Alert, &data, pdMS_TO_TICKS(1000)) == pdPASS) {
+                // Đo thời gian và in log
+                uint64_t alert_time_us = esp_timer_get_time();
+                uint32_t total_time_us = (uint32_t)(alert_time_us - data.start_time_us);
+                ESP_LOGI("PERFORMANCE", "Thời gian từ lúc đo tới lúc phát cảnh báo: %lu us", total_time_us);
+
+                // Bật còi cảnh báo
+                gpio_set_level(BUZZER_PIN, 1);
+
                 snprintf(event_buffer, sizeof(event_buffer),
                          "%04d-%02d-%02d %02d:%02d:%02d - CẢNH BÁO: Vượt ngưỡng AQI an toàn!",
                          data.timestamp.year, data.timestamp.month, data.timestamp.day,
@@ -79,6 +84,10 @@ void task_alert_entry(void *pvParameters) {
                     ESP_LOGW(TAG, "SD không sẵn sàng, bỏ qua lưu alert outbox");
                 }
             }
+
+            // Tắt còi sau 1 giây
+            vTaskDelay(pdMS_TO_TICKS(200));
+            gpio_set_level(BUZZER_PIN, 0);
 
             // Xóa cờ alert sau khi xử lý
             xEventGroupClearBits(SystemEventGroup, BIT_ALERT);
