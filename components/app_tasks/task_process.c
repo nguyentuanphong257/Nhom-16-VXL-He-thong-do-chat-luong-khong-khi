@@ -5,15 +5,15 @@
 #include <time.h>
 #include <math.h>
 
-#define AQI_THRESHOLD_ALERT 200 // Ngưỡng bắt đầu mức Xấu
+#define AQI_THRESHOLD_ALERT 150 // Ngưỡng bắt đầu mức Xấu
 
 extern FilterState_t filter_pm25, filter_pm10, filter_temp, filter_hum;
 
 static const CalibrationParams_t s_fixed_calib = {
-    .temp_offset = 0.3f,
-    .temp_gain = 1.00f,
-    .hum_offset = 1.5f,
-    .hum_gain = 1.00f,
+    .temp_offset = 0.8268f,
+    .temp_gain = 0.9214f,
+    .hum_offset = -38.0f,
+    .hum_gain = 1.5f,
 };
 
 static time_t get_unix_time(Timestamp_t ts) {

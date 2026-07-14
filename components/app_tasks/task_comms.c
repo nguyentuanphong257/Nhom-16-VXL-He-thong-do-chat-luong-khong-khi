@@ -116,6 +116,7 @@ void task_comms_entry(void *pvParameters) {
                              data.timestamp.hour, data.timestamp.minute, data.timestamp.second);
                     if (is_connected) {
                         mqtt_manager_publish(MQTT_TOPIC_ALERT, alert_msg, 1);
+                        ESP_LOGI(TAG, "Đã gửi cảnh báo hiệu chuẩn qua MQTT.");
                     } else {
                         if (xEventGroupGetBits(SystemEventGroup) & BIT_SD_CARD_READY) {
                             sd_card_write_line(MQTT_ALERT_OUTBOX, alert_msg);
@@ -139,7 +140,7 @@ void task_comms_entry(void *pvParameters) {
                     }
                 }
             } else {
-                ESP_LOGW(TAG, "Mất kết nối mạng, lưu MQTT data vào outbox.");
+                ESP_LOGW(TAG, "Mất kết nối với MQTT Broker, đang buffer dữ liệu.");
                 if (xEventGroupGetBits(SystemEventGroup) & BIT_SD_CARD_READY) {
                     sd_card_write_line(MQTT_DATA_OUTBOX, payload_buffer);
                 } else {
