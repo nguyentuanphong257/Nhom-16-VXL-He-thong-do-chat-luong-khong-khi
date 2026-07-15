@@ -57,6 +57,52 @@ EventGroupHandle_t SystemEventGroup;
 volatile uint32_t measure_interval_ms = 1000; 
 
 /* ========================================================================== */
+/* KHỞI TẠO VÙNG NHỚ TĨNH CHO IPC & TASKS                                     */
+/* ========================================================================== */
+// Queues & EventGroup
+static StaticEventGroup_t xSystemEventGroupStruct;
+
+static uint8_t ucSensorQueueStorage[QUEUE_LENGTH * sizeof(SensorData_t)];
+static StaticQueue_t xSensorQueueStruct;
+
+static uint8_t ucQueueDisplayStorage[5 * sizeof(ProcessedData_t)];
+static StaticQueue_t xQueueDisplayStruct;
+
+static uint8_t ucQueueAlertStorage[5 * sizeof(ProcessedData_t)];
+static StaticQueue_t xQueueAlertStruct;
+
+static uint8_t ucQueueStorageStorage[10 * sizeof(ProcessedData_t)];
+static StaticQueue_t xQueueStorageStruct;
+
+static uint8_t ucQueueCommsStorage[10 * sizeof(ProcessedData_t)];
+static StaticQueue_t xQueueCommsStruct;
+
+static uint8_t ucQueuePowerStorage[2 * sizeof(ProcessedData_t)];
+static StaticQueue_t xQueuePowerStruct;
+
+// Tasks Stack & TCB
+static StackType_t xTaskAlertStack[4096];
+static StaticTask_t xTaskAlertTCB;
+
+static StackType_t xTaskSensorStack[4096];
+static StaticTask_t xTaskSensorTCB;
+
+static StackType_t xTaskProcessStack[8192];
+static StaticTask_t xTaskProcessTCB;
+
+static StackType_t xTaskDisplayStack[4096];
+static StaticTask_t xTaskDisplayTCB;
+
+static StackType_t xTaskStorageStack[4096];
+static StaticTask_t xTaskStorageTCB;
+
+static StackType_t xTaskCommsStack[4096];
+static StaticTask_t xTaskCommsTCB;
+
+static StackType_t xTaskPowerStack[2048];
+static StaticTask_t xTaskPowerTCB;
+
+/* ========================================================================== */
 /* HÀM MAIN - ĐIỂM BẮT ĐẦU CỦA HỆ THỐNG ESP-IDF                               */
 /* ========================================================================== */
 void app_main(void) {
@@ -70,19 +116,16 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    // 2. Khởi tạo các đối tượng IPC (Inter-Process Communication) cho FreeRTOS
-    Q1_SensorQueue = xQueueCreate(QUEUE_LENGTH, sizeof(SensorData_t));
-    Q_Display = xQueueCreate(5, sizeof(ProcessedData_t));
-    Q_Alert = xQueueCreate(5, sizeof(ProcessedData_t));
-    Q_Storage = xQueueCreate(10, sizeof(ProcessedData_t));
-    Q_Comms   = xQueueCreate(10, sizeof(ProcessedData_t));
-    Q_Power   = xQueueCreate(2, sizeof(ProcessedData_t));
-    SystemEventGroup = xEventGroupCreate();
-
-    if (Q1_SensorQueue == NULL || Q_Display == NULL || Q_Alert == NULL || Q_Storage == NULL || Q_Comms == NULL || Q_Power == NULL || SystemEventGroup == NULL) {
-        ESP_LOGE(TAG, "Không đủ bộ nhớ RAM để cấp phát Queue/EventGroup!");
-        return; // Dừng hệ thống nếu không đủ RAM
-    }
+    // 2. Khởi tạo các đối tượng IPC (Inter-Process Communication) cho FreeRTOS (Cấp phát tĩnh)
+    Q1_SensorQueue = xQueueCreateStatic(QUEUE_LENGTH, sizeof(SensorData_t), ucSensorQueueStorage, &xSensorQueueStruct);
+    Q_Display = xQueueCreateStatic(5, sizeof(ProcessedData_t), ucQueueDisplayStorage, &xQueueDisplayStruct);
+    Q_Alert = xQueueCreateStatic(5, sizeof(ProcessedData_t), ucQueueAlertStorage, &xQueueAlertStruct);
+    Q_Storage = xQueueCreateStatic(10, sizeof(ProcessedData_t), ucQueueStorageStorage, &xQueueStorageStruct);
+    Q_Comms   = xQueueCreateStatic(10, sizeof(ProcessedData_t), ucQueueCommsStorage, &xQueueCommsStruct);
+    Q_Power   = xQueueCreateStatic(2, sizeof(ProcessedData_t), ucQueuePowerStorage, &xQueuePowerStruct);
+    SystemEventGroup = xEventGroupCreateStatic(&xSystemEventGroupStruct);
+    
+    // (Bỏ qua việc kiểm tra NULL vì cấp phát tĩnh luôn thành công với bộ nhớ đã cấp phát sẵn)
 
     //Khởi tạo subsytem i2cdev
 
@@ -124,25 +167,25 @@ void app_main(void) {
     // Priority cao nhất = 6, thấp nhất = 1
     
     // T1_Alert (Priority 6) [cite: 39]
-    xTaskCreate(task_alert_entry, "Task_Alert", 4096, NULL, 6, NULL);
+    xTaskCreateStatic(task_alert_entry, "Task_Alert", 4096, NULL, 6, xTaskAlertStack, &xTaskAlertTCB);
     
     // T2_Sensor (Priority 5) [cite: 39]
-    xTaskCreate(task_sensor_entry, "Task_Sensor", 4096, NULL, 5, NULL);
+    xTaskCreateStatic(task_sensor_entry, "Task_Sensor", 4096, NULL, 5, xTaskSensorStack, &xTaskSensorTCB);
     
     // T3_Process (Priority 4) [cite: 39]
-    xTaskCreate(task_process_entry, "Task_Process", 8192, NULL, 4, NULL); // Stack lớn hơn vì chứa mảng/toán học
+    xTaskCreateStatic(task_process_entry, "Task_Process", 8192, NULL, 4, xTaskProcessStack, &xTaskProcessTCB); // Stack lớn hơn vì chứa mảng/toán học
     
     // T4_Display (Priority 3) [cite: 39]
-    xTaskCreate(task_display_entry, "Task_Display", 4096, NULL, 3, NULL);
+    xTaskCreateStatic(task_display_entry, "Task_Display", 4096, NULL, 3, xTaskDisplayStack, &xTaskDisplayTCB);
     
     // T5_Storage (Priority 2) [cite: 39]
-    xTaskCreate(task_storage_entry, "Task_Storage", 4096, NULL, 2, NULL);
+    xTaskCreateStatic(task_storage_entry, "Task_Storage", 4096, NULL, 2, xTaskStorageStack, &xTaskStorageTCB);
     
     // T6_Comms (Priority 2) [cite: 39]
-    xTaskCreate(task_comms_entry, "Task_Comms", 4096, NULL, 2, NULL);
+    xTaskCreateStatic(task_comms_entry, "Task_Comms", 4096, NULL, 2, xTaskCommsStack, &xTaskCommsTCB);
     
     // T7_Power (Priority 1) [cite: 39]
-    xTaskCreate(task_power_entry, "Task_Power", 2048, NULL, 1, NULL);
+    xTaskCreateStatic(task_power_entry, "Task_Power", 2048, NULL, 1, xTaskPowerStack, &xTaskPowerTCB);
 
     ESP_LOGI(TAG, "Khởi tạo thành công! Hệ thống đã đi vào hoạt động đo đạc.");
     

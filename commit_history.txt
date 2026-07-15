@@ -1,0 +1,9 @@
+* 0f7a661 (HEAD -> master, origin/master) Hieu chuan Outlier
+* 052920f Hieu chuan cam bien BME680
+* 4bf117d moi nhat
+* a7c8d26 update self_check
+* 85f1668 update cau truc datalog
+* 68c3b65 update chuc nang reset ket noi wifi sau 5s
+* 18d32e2 bo sung chuc nang buffer khi mat ket noi
+* d374f0d sua luu su kien canh bao vao the SD
+* 2549b74 init project

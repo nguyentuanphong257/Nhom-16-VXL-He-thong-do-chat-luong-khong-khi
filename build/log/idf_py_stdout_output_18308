@@ -1,0 +1,244 @@
+Command: D:\ESP-IDF\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe D:\ESP-IDF\Espressif\frameworks\esp-idf-v5.5.4\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\TUAN PHONG\Documents\VXL\air_quality_monitor\build\air_quality_monitor.elf C:\Users\TUAN PHONG\Documents\VXL\air_quality_monitor\build\bootloader\bootloader.elf --force-color -m 'D:\ESP-IDF\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'D:\ESP-IDF\Espressif\frameworks\esp-idf-v5.5.4\tools\idf.py' '-p' 'COM4'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6280
+load:0x40078000,len:15864
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Jul 14 2026 23:11:04[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=2761ch (161308) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00037644 vaddr=3ffb0000 size=047b4h ( 18356) load[0m
+[0;32mI (148) esp_image: segment 2: paddr=0003be00 vaddr=40080000 size=04218h ( 16920) load[0m
+[0;32mI (155) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=b608ch (745612) map[0m
+[0;32mI (410) esp_image: segment 4: paddr=000f60b4 vaddr=40084218 size=17d88h ( 97672) load[0m
+[0;32mI (448) esp_image: segment 5: paddr=0010de44 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (462) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (462) boot: Disabling RNG early entropy source...[0m
+[0;32mI (473) cpu_start: Multicore app[0m
+[0;32mI (481) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (481) cpu_start: Pro cpu start user code[0m
+[0;32mI (481) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (483) app_init: Application information:[0m
+[0;32mI (487) app_init: Project name:     air_quality_monitor[0m
+[0;32mI (492) app_init: App version:      0f7a661-dirty[0m
+[0;32mI (496) app_init: Compile time:     Jul 14 2026 23:10:42[0m
+[0;32mI (501) app_init: ELF file SHA256:  9c4f32658...[0m
+[0;32mI (506) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (510) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (513) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (517) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (522) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (528) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (533) heap_init: At 3FFC2550 len 0001DAB0 (118 KiB): DRAM[0m
+[0;32mI (538) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (543) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (549) heap_init: At 4009BFA0 len 00004060 (16 KiB): IRAM[0m
+[0;32mI (556) spi_flash: detected chip: generic[0m
+[0;32mI (558) spi_flash: flash io: dio[0m
+[0;32mI (562) main_task: Started on CPU0[0m
+[0;32mI (572) main_task: Calling app_main()[0m
+[0;32mI (572) APP_MAIN: --- Bắt đầu khởi động Trạm Quan Trắc Không Khí ---[0m
+[0;32mI (592) i2cdev: [Port 0] First initialization. Configuring bus with SDA=21, SCL=22 (Pullups SCL:0 SDA:0)[0m
+[0;33mW (592) i2c.master: Please check pull-up resistances whether be connected properly. Otherwise unexpected behavior would happen. For more detailed information, please read docs[0m
+[0;32mI (612) i2cdev: [Port 0] Successfully installed I2C master bus (Handle: 0x3ffc6774).[0m
+[0;32mI (612) i2cdev: [0x77 at 0] Device added successfully (Device Handle: 0x3ffc6cd0, Speed: 1000000 Hz).[0m
+[0;32mI (632) BME680_DRIVER: BME680 đã khởi tạo thành công.[0m
+[0;32mI (632) PMS5003: Khoi tao UART cho PMS5003 hoan tat.[0m
+[0;32mI (632) SD_CARD_APP: Mount SD @ 10000kHz (MISO=19 MOSI=23 SCK=18 CS=5)...[0m
+[0;32mI (642) sdspi_transaction: cmd=52, R1 response: command not supported[0m
+[0;32mI (692) sdspi_transaction: cmd=5, R1 response: command not supported[0m
+Name: SL32G
+Type: SDHC
+Speed: 10.00 MHz (limit: 10.00 MHz)
+Size: 30436MB
+CSD: ver=2, sector_size=512, capacity=62333952 read_bl_len=9
+SSR: bus_width=1
+[0;32mI (742) SD_CARD_APP: Thẻ SD sẵn sàng![0m
+[0;32mI (752) wifi:wifi driver task: 3ffd6d38, prio:23, stack:6656, core=0[0m
+[0;32mI (762) wifi:wifi firmware version: 0947e8b[0m
+[0;32mI (762) wifi:wifi certification version: v7.0[0m
+[0;32mI (762) wifi:config NVS flash: enabled[0m
+[0;32mI (762) wifi:config nano formatting: disabled[0m
+[0;32mI (772) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (772) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (772) wifi:Init management short buffer num: 32[0m
+[0;32mI (782) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (782) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (792) wifi:Init static rx buffer num: 10[0m
+[0;32mI (792) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (802) wifi_init: rx ba win: 6[0m
+[0;32mI (802) wifi_init: accept mbox: 6[0m
+[0;32mI (802) wifi_init: tcpip mbox: 32[0m
+[0;32mI (802) wifi_init: udp mbox: 6[0m
+[0;32mI (812) wifi_init: tcp mbox: 6[0m
+[0;32mI (812) wifi_init: tcp tx win: 5760[0m
+[0;32mI (812) wifi_init: tcp rx win: 5760[0m
+[0;32mI (812) wifi_init: tcp mss: 1440[0m
+[0;32mI (822) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (822) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (852) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (932) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (952) wifi:mode : sta (1c:c3:ab:c3:9f:d4)[0m
+[0;32mI (952) wifi:enable tsf[0m
+[0;32mI (952) WIFI_MGR: Khởi động Wi-Fi Station hoàn tất.[0m
+[1;31mE (962) esp-tls: couldn't get hostname for :broker.hivemq.com: getaddrinfo() returns 202, addrinfo=0x0[0m
+[1;31mE (962) transport_base: Failed to open a new connection: 32769[0m
+[1;31mE (962) mqtt_client: Error transport connect[0m
+[1;31mE (972) MQTT_MGR: Gặp lỗi MQTT Event Error.[0m
+[0;33mW (972) MQTT_MGR: Mất kết nối tới MQTT Broker.[0m
+[0;32mI (982) APP_MAIN: Đang cấp phát luồng cho 7 Task FreeRTOS...[0m
+[0;32mI (982) i2cdev: [0x68 at 0] Device added successfully (Device Handle: 0x3ffe0bd4, Speed: 400000 Hz).[0m
+[0;32mI (992) TASK_PROCESS: Using fixed calibration: T gain=0.92 offset=0.83, H gain=1.50 offset=-38.00[0m
+[0;32mI (992) OLED_APP: Khởi tạo OLED qua i2cdev (Cổng I2C_NUM_0)...[0m
+[0;32mI (992) T5_STORAGE: Khởi động: Đang tải tham số hiệu chuẩn từ Flash...[0m
+[0;32mI (992) APP_MAIN: Khởi tạo thành công! Hệ thống đã đi vào hoạt động đo đạc.[0m
+[0;32mI (1022) main_task: Returned from app_main()[0m
+[0;33mW (1262) bme680: Heater is not stable[0m
+[0;32mI (1312) i2cdev: [0x3c at 0] Device added successfully (Device Handle: 0x3ffafb34, Speed: 400000 Hz).[0m
+[0;32mI (1352) OLED_APP: OLED sẵn sàng.[0m
+[0;32mI (1572) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1572) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2902) wifi:state: auth -> init (0x600)[0m
+[0;33mW (2972) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (2982) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (2992) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (1/5)...[0m
+[0;33mW (5402) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (2/5)...[0m
+[0;32mI (5412) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5422) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (6172) wifi:state: auth -> init (0x600)[0m
+[0;32mI (6182) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (6192) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;33mW (6192) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (3/5)...[0m
+[0;33mW (8612) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (4/5)...[0m
+[0;32mI (8622) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8622) wifi:state: init -> auth (0xb0)[0m
+[0;33mW (9382) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (9952) wifi:state: auth -> init (0x600)[0m
+[0;32mI (9972) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (9972) WIFI_MGR: Mất kết nối Wi-Fi. Đang thử kết nối lại (5/5)...[0m
+[0;32mI (9972) WIFI_MGR: Đã đạt giới hạn retry. Sẽ reset retry count sau 5 giây.[0m
+[1;31mE (10982) esp-tls: couldn't get hostname for :broker.hivemq.com: getaddrinfo() returns 202, addrinfo=0x0[0m
+[1;31mE (10982) transport_base: Failed to open a new connection: 32769[0m
+[1;31mE (10982) mqtt_client: Error transport connect[0m
+[1;31mE (10982) MQTT_MGR: Gặp lỗi MQTT Event Error.[0m
+[0;33mW (10992) MQTT_MGR: Mất kết nối tới MQTT Broker.[0m
+[0;33mW (11972) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (12082) T5_STORAGE: Ghi nhat ky: [2026-07-15 14:25:48] YEU CAU: Tai hieu chuan.[0m
+
+[1;31mE (12392) WIFI_MGR: Không thể kết nối tới Wi-Fi sau 5 lần thử.[0m
+[0;32mI (14982) WIFI_MGR: Wi-Fi retry count đã được reset sau 5 giây. Thử kết nối lại...[0m
+[0;32mI (15002) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (15002) wifi:state: init -> auth (0xb0)[0m
+[0;33mW (15762) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (16322) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (16372) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (16422) wifi:connected with Son Hai, aid = 1, channel 6, BW20, bssid = 62:12:63:af:45:0a[0m
+[0;32mI (16422) wifi:security: WPA3-SAE HUNT_AND_PECK, phy: bgn, rssi: -19, cipher(pairwise:0x3, group:0x3), pmf:1[0m
+[0;32mI (16442) wifi:pm start, type: 1[0m
+
+[0;32mI (16442) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (16502) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (17622) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (17622) WIFI_MGR: Đã kết nối thành công! Cấp IP: 172.20.10.8[0m
+[0;33mW (18262) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;33mW (21422) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;33mW (24572) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (26002) wifi:<ba-add>idx:0 (ifx:0, 62:12:63:af:45:0a), tid:0, ssn:2, winSize:64[0m
+[0;32mI (26952) MQTT_MGR: Đã kết nối tới HiveMQ Broker thành công.[0m
+[0;33mW (27722) T6_COMMS: Mất kết nối với MQTT Broker, đang buffer dữ liệu.[0m
+[0;32mI (27812) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27812) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27812) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27822) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27832) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27852) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27852) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27862) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27872) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27872) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27892) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27892) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27902) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27912) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27922) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27932) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27932) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27942) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27952) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27962) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27972) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27982) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (27992) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28002) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28182) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28222) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28222) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28222) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28232) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28242) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28252) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28262) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28272) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28272) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28282) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28292) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28312) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28312) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28322) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28332) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28332) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28342) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28362) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28362) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28372) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28382) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28392) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28592) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28592) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28602) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28602) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28612) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28632) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28632) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28642) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28652) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28662) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28672) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28672) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28682) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28692) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28702) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28712) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28722) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28722) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28732) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28742) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28752) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (28782) T6_COMMS: Đã flush outbox MQTT: /sdcard/mqdata.log[0m
+[0;32mI (28812) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/alert], msg_id=26100[0m
+[0;32mI (28822) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/alert], msg_id=19610[0m
+[0;32mI (29002) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/alert], msg_id=28464[0m
+[0;32mI (29002) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/alert], msg_id=12271[0m
+[0;32mI (29032) T6_COMMS: Đã flush outbox MQTT: /sdcard/mqalt.log[0m
+[0;32mI (30882) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (34032) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (37182) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (40332) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m
+[0;32mI (43482) MQTT_MGR: Đẩy dữ liệu thành công lên topic [vias/air_monitor/data], msg_id=0[0m

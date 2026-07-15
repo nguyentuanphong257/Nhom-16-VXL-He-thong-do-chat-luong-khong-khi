@@ -1,0 +1,9 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=D:\ESP-IDF\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 C:\Users\TUAN PHONG\Documents\VXL\air_quality_monitor
+fatal: detected dubious ownership in repository at 'D:/ESP-IDF/Espressif/frameworks/esp-idf-v5.5.4/components/openthread/openthread'
+'D:/ESP-IDF/Espressif/frameworks/esp-idf-v5.5.4/components/openthread/openthread/.git' is owned by:
+	BUILTIN/Administrators (S-1-5-32-544)
+but the current user is:
+	DESKTOP-PB6RUM9/TUAN PHONG (S-1-5-21-2864804412-911102211-1547784372-1001)
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory D:/ESP-IDF/Espressif/frameworks/esp-idf-v5.5.4/components/openthread/openthread
